@@ -2,6 +2,11 @@
 <a href="/edit">Edit Profile</a>
 <div class = container >
 <h1><%= donor.name %></h1>
+<% if(donor.activeStatus == true) { %>
+    <h4> Active </h4>
+<% } else { %>
+    <h4> Not Active</h4>
+    <% } %>
 <ul>
     <li>Username      : <%= donor.local.username %></li>
     <li>Email         : <%= donor.email %></li>
@@ -12,6 +17,7 @@
     <li>D.O.B.        : <%= donor.dob %></li>
     <li>City          : <%= donor.city%></li>
     <li>Last donation : <%= donor.dateOfLastDonation %></li>
+
 </ul>
 </div>
 
