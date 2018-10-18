@@ -8,9 +8,16 @@ var donorSchema = mongoose.Schema({
             username : String,
             password : String,
         },
+        facebook: 
+        {
+            id           : String,
+            token        : String,
+            name         : String,
+            email        : String
+        },
         name : String,
         email : String,
-        confirmPassword : String,
+        //confirmPassword : String,
         dob : Date,
         gender : String,
         bloodGroup : String,
@@ -18,6 +25,7 @@ var donorSchema = mongoose.Schema({
         city : String,
         contactNumber : String,
         address : String,
+        activeStatus : Boolean ,
         userType : String
 });
 

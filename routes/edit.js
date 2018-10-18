@@ -28,7 +28,8 @@ router.post('/',function(req,res){
     updatedDonor.city = req.body.city;
     updatedDonor.contactNumber = req.body.contactNumber;
     updatedDonor.address = req.body.address;
-    updatedDonor.userType = req.body.address.userType;
+    updatedDonor.userType = req.body.userType;
+    updatedDonor.activeStatus = req.body.activeStatus;
     updatedDonor._id = req.user._id;
     console.log(req.user,req.user.local.username,updatedDonor,req.user._id);
     
