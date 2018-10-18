@@ -14,8 +14,8 @@ router.get("/",function(req,res)
 //Handle Search Logic
 router.post("/",function(req,res)
 {
-   console.log(req.body.city);
-   console.log(req.body.bloodGroup);
+//    console.log(req.body.city);
+//    console.log(req.body.bloodGroup);
     if(req.body.bloodGroup == "0")
     {
         if(req.body.city == "0")
