@@ -2,6 +2,8 @@
 <a href="/editHospital">Edit Profile</a>
 <div class = container>
 <h1><%= hospital.name %></h1>
+<% var file = 'uploads/' + hospital.profilePic ; %>
+<img src="<%= file %>" >
 <ul>
     <li>Username : <%= hospital.local.username %></li>
     <li>Email :  <%= hospital.email %></li>

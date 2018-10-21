@@ -7,6 +7,8 @@
 <% } else { %>
     <h4> Not Active</h4>
     <% } %>
+    <% var file = 'uploads/' + donor.profilePic ; %>
+    <img src="<%= file %>" >
 <ul>
     <li>Username      : <%= donor.local.username %></li>
     <li>Email         : <%= donor.email %></li>
@@ -17,6 +19,7 @@
     <li>D.O.B.        : <%= donor.dob %></li>
     <li>City          : <%= donor.city%></li>
     <li>Last donation : <%= donor.dateOfLastDonation %></li>
+ 
 
 </ul>
 </div>

@@ -4,7 +4,7 @@
 	<h1>Hospital Registration</h1>
     <div class="row">
  
-	<form action="/editHospital" method="POST">
+	<form action="/editHospital" method="POST" enctype="multipart/form-data">
 		<div class="form-group">
 		<label>
 			Name<br>
@@ -34,6 +34,13 @@
 	    </div>
 
 
+		<div class="form-group">
+				<label>
+					Upload Profile Image<br>
+					<%= typeof msg != 'undefined' ? msg : ' ' %>
+					<input type="file" class="form-control" name="profilePic">
+				</label>
+		</div>
 	
 
         <div class="form-group">

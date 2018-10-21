@@ -10,7 +10,9 @@ var express               = require('express'),
     flash                 = require('connect-flash'),
     donor                 = require('./models/donor.js'),
     hospital              = require('./models/hospital.js'),
-    middleware            = require('./middleware/index');
+    middleware            = require('./middleware/index'),
+    multer                = require('multer'),
+    path                  = require('path');
     require('./config/passport')(passport);
 
 //Requiring routes
@@ -23,6 +25,9 @@ var authRoutes    = require("./routes/auth"),
 //Connecting database
  mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true});
 // mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
+
+
+
 
 
 //Configuration

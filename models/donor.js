@@ -19,6 +19,7 @@ var donorSchema = mongoose.Schema({
         email : String,
         //confirmPassword : String,
         dob : Date,
+        profilePic : String,
         gender : String,
         bloodGroup : String,
         dateOfLastDonation : Date,
