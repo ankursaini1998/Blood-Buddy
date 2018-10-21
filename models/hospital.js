@@ -10,6 +10,7 @@ var hospSchema = new mongoose.Schema({
         },
         name : String,
         email : String,
+        profilePic : String,
       //  confirmPassword : String,
         city : String,
         contactNumber : String,

@@ -55,6 +55,7 @@ passport.use('local-signup', new LocalStrategy({passReqToCallback : true},functi
             newDonor.email = req.body.email;
            // newDonor.confirmPassword = req.body.confirmPassword;
             newDonor.dob = req.body.dob;
+            newDonor.profilePic = req.file.filename;
             newDonor.gender = req.body.gender;
             newDonor.bloodGroup = req.body.bloodGroup;
             newDonor.dateOfLastDonation = req.body.dateOfLastDonation;
@@ -93,6 +94,7 @@ passport.use('local-signup-hospital', new LocalStrategy({ passReqToCallback: tru
                 newHospital.local.password = newHospital.generateHash(password);
                 newHospital.name = req.body.name;
                 newHospital.email = req.body.email;
+                newHospital.profilePic = req.file.filename ;
                // newHospital.confirmPassword = req.body.confirmPassword;
                 newHospital.city = req.body.city;
                 newHospital.contactNumber = req.body.contactNumber;
