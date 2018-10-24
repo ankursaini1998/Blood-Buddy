@@ -3,6 +3,8 @@ var express        = require("express"),
     passport       = require("passport"),
     donor          = require("../models/donor"),
     hospital       = require("../models/hospital"),
+    hospDatabase   =require("../models/hospDatabase"),
+    middleware     =require("../middleware/index")
     LocalStrategy  = require("passport-local").Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     bodyParser     = require('body-parser'),
@@ -105,7 +107,7 @@ router.post('/registerHospital',(req,res,next)=>{
         }
         
     })
-   },
+   },middleware.seed,
     passport.authenticate('local-signup-hospital', {
     successRedirect : '/profileHospital', 
     failureRedirect : '/',

@@ -13,6 +13,7 @@ var express               = require('express'),
     middleware            = require('./middleware/index'),
     multer                = require('multer'),
     path                  = require('path');
+    hospDatabase          = require('./models/hospDatabase.js'),
     require('./config/passport')(passport);
 
 //Requiring routes
@@ -23,7 +24,7 @@ var authRoutes    = require("./routes/auth"),
     editHospRoutes= require("./routes/editHospital");
  
 //Connecting database
- mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true});
+ mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true, useCreateIndex: true,});
 // mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
 
 
@@ -62,6 +63,8 @@ app.use("/editHospital", editHospRoutes);
 app.get('/',function(req,res){
     res.render('home');
 });
+
+
 
 app.get('/home',function(req,res){
     res.render('home');
@@ -104,7 +107,7 @@ query.exec(function (err, person) {
 
 app.post("/home/hospitalUsernameTest",function(req,res){
     var query= hospital.findOne({"local.username":req.body.username});
-    console.log(req.body.username);
+    //console.log(req.body.username);
  query.select("local.username");
  query.exec(function (err, person) {
    if (err) return handleError(err);     
@@ -123,8 +126,40 @@ query.exec(function (err, person) {
  if(person ==null)
  res.send({"email":"-1"});
  else res.send({"email":person.email});
+ //console.log(person.email);
+
 });
 });
+
+
+app.get("/hospDatabase",middleware.isLoggedIn,function(req,res){
+
+var database=hospDatabase.findOne({"name":req.user.local.username}).select();
+database.exec(function (err, data) {
+    if (err) return handleError(err);     
+    res.render('hospDatabase',{"data":data });
+   });
+
+    
+});
+
+
+app.get("/editHospDatabase",middleware.isLoggedIn,function(req,res){
+
+    var database=hospDatabase.findOne({"name":req.user.local.username}).select();
+    database.exec(function (err, data) {
+        if (err) return handleError(err);     
+        res.render('editHospDatabase',{"data":data });
+       });
+
+});
+
+
+app.post('/hospDatabaseForm',middleware.isLoggedIn,middleware.editHospData,function(req,res)
+{
+   res.redirect('/profileHospital');
+});
+
 
 app.listen('8080',function(){
     console.log('Server Started');

@@ -146,7 +146,7 @@ passport.use('local-login-hospital', new LocalStrategy({ passReqToCallback: true
         }
         console.log("Logged in Successfully!");
         console.log("Welcome  " + hospital.name);
-        console.log("HIII 1"+hospital);
+       // console.log("HIII 1"+hospital);
         console.log("hiii 2 "+req.user);
         return done(null, hospital,req.flash("success", "Successfully Logged In! Welcome " + req.body.username));
     });
