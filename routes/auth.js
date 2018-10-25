@@ -133,14 +133,14 @@ router.get('/login', function(req, res){
  //Login Route
 router.post('/login', passport.authenticate('local-login', {
     successRedirect : '/home', 
-    failureRedirect : '/', 
+    failureRedirect : '/home', 
     failureFlash :true
     
     
 }));
 router.post('/loginHospital', passport.authenticate('local-login-hospital', {
     successRedirect : '/home', 
-    failureRedirect : '/', 
+    failureRedirect : '/home', 
     failureFlash :true
     
     
