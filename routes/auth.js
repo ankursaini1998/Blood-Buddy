@@ -3,6 +3,9 @@ var express        = require("express"),
     passport       = require("passport"),
     donor          = require("../models/donor"),
     hospital       = require("../models/hospital"),
+
+    hospDatabase   =require("../models/hospDatabase"),
+    middleware     =require("../middleware/index")
     LocalStrategy  = require("passport-local").Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     bodyParser     = require('body-parser'),
@@ -17,7 +20,6 @@ router.use(express.static(__dirname + "/public/scripts"));
 router.use(express.static(__dirname + "/public/uploads"));
 //app.use(express.static('/auth',__dirname + "/public"));
 router.use(express.static(__dirname + "/views"));
-
 
 router.use(function(req, res, next){
     res.locals.currentUser = req.user;
@@ -112,7 +114,7 @@ router.post('/registerHospital',(req,res,next)=>{
         }
         
     })
-   },
+   },middleware.seed,
     passport.authenticate('local-signup-hospital', {
     successRedirect : '/profileHospital', 
     failureRedirect : '/',
