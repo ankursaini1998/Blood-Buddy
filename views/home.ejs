@@ -8,7 +8,7 @@
             <h3 class="animated fadeIn" style="animation-delay:.5s;">It's NICE TO SEE YOU HERE</h3>
 
             <% if(!currentUser){ %>
-            <button class="btn btn-blue-filled btn-xl btn-general animated fadeIn " style="animation-delay:.8s;" onclick="window.location.href='/search'"><b>Search Donor</b></button>
+            <button class="btn btn-blue-filled btn-xl btn-general animated fadeIn " style="animation-delay:.8s;" onclick="$('#search-donors').fadeTo(500,1);$(body).css('overflow','hidden');"><b>Search Donor</b></button>
             <% } else { %>
             <h3 class="animated fadeIn" style="animation-delay:.7s;">
                 <%= currentUser.local.username %>
@@ -147,7 +147,7 @@ Our project with the help of technology will connect all people,hospitals & ngoâ
                                 </p>
                             </div>
                             <div id="about-btn" class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                                <a class="btn btn-xl btn-general btn-blue" href="#work" role="button">Contribute</a>
+                                <a class="btn btn-xl btn-general btn-blue" href="/auth/register" role="button">Contribute</a>
                             </div>
                         </div>
                     </div>
@@ -248,10 +248,10 @@ Our project with the help of technology will connect all people,hospitals & ngoâ
                         </div>
                     </div>
                     <ul class="social-list">
-                        <li><a href="#" class="social-icon icon-white"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#" class="social-icon icon-white"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" class="social-icon icon-white"><i class="fab fa-youtube"></i></a></li>
-                        <li><a href="#" class="social-icon icon-white"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="https://www.facebook.com/nitkkr.ac.in" target="_blank" class="social-icon icon-white"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank" class="social-icon icon-white"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" class="social-icon icon-white"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#" target="_blank" class="social-icon icon-white"><i class="fab fa-google-plus-g"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -264,7 +264,7 @@ Our project with the help of technology will connect all people,hospitals & ngoâ
                             <input type="email" name="userEmail" placeholder="Email Address" class="form-control footer-control" required><br>
                             <textarea rows="5" name="message" placeholder="Message..." class="form-control footer-control"></textarea><br>
                             <div id="send-btn">
-                                <a href="#" role="button" class="btn btn-lg btn-general btn-white">SEND</a>
+                                <a href="" role="button" class="btn btn-lg btn-general btn-white" onclick="alert('Thanks for contacting us, We will reply you soon !!!');">SEND</a>
                             </div>
                         </form>
 
