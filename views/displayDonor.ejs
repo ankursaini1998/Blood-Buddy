@@ -5,10 +5,18 @@
 
         <ul>
             <%donors.forEach(function(donor){%>
-                <li><div >
+                <li><div >                    
                     <h1><%=donor.name%> </h1>
                     <h4><%= donor.userType %></h4>
                      Contact :    <%= donor.contactNumber%>
+                     <% if (donor.userType == "Hospital") { %>
+                        <div class="form-group">
+                            <label>
+                        <form action="/hospitalquery" method="post">
+                        <input type="hidden" name="username" value=<%= donor.local.username %> >
+                        <button type="submit" class="btn btn-primary" >View Hospital</button>
+                        </form></label></div>
+                        <%}%> 
                  </div></li>
 
                 <%});%>

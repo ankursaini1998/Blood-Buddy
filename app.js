@@ -12,7 +12,8 @@ var express               = require('express'),
     hospital              = require('./models/hospital.js'),
     middleware            = require('./middleware/index'),
     multer                = require('multer'),
-    path                  = require('path');
+    path                  = require('path'),
+    countDonors           = require('./count.js');
     require('./config/passport')(passport);
 
 //Requiring routes
@@ -21,12 +22,13 @@ var authRoutes    = require("./routes/auth"),
     searchRoutes  = require("./routes/search"),
     searchHospRoutes  = require("./routes/searchHospital"),
     editHospRoutes= require("./routes/editHospital");
+    hospQuery = require("./routes/hospitalquery");
  
 //Connecting database
  mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true});
-// mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
+//mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
 
-
+countDonors();
 
 
 
@@ -58,6 +60,7 @@ app.use("/search", searchRoutes);
 app.use("/edit", editRoutes);
 app.use("/searchHospital", searchHospRoutes);
 app.use("/editHospital", editHospRoutes);
+app.use("/hospitalquery",hospQuery);
 //ROUTES
 app.get('/',function(req,res){
     res.render('home');
@@ -77,6 +80,14 @@ app.get('/profileHospital',middleware.isLoggedIn,function(req,res){
     console.log("hosp login");
     res.render('profileHospital',{hospital : req.user});
 });
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+// the callback after google has authenticated the user
+app.get('/auth/google/callback',
+        passport.authenticate('google', {
+                successRedirect : '/profileGoogle',
+                failureRedirect : '/'
+        }));
 
 app.post("/home/usernameTest",function(req,res){
     var query= donor.findOne({"local.username":req.body.username});
