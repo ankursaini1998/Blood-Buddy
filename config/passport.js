@@ -4,6 +4,7 @@ var LocalStrategy   = require('passport-local').Strategy,
     hospital        = require('../models/hospital'),
     flash           = require('connect-flash');
     configAuth = require('./auth');
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 module.exports = function(passport) {
 
     //Serializing User for the session
@@ -161,8 +162,13 @@ passport.use(new FacebookStrategy({
     callbackURL     : configAuth.facebookAuth.callbackURL
     
     },function(token, refreshToken, profile, done) {
+        // donor.Create({ 'facebook.id' : profile.id }, function (err, user) {
+        //     return cb(err, user);
+        //   });
         process.nextTick(function() {
-        donor.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+            console.log(profile);
+            console.log(token);
+        donor.findOne({ 'facebook.id':profile.id }, function(err, user) {
             if (err)
                 return done(err);
             if (user) {
@@ -172,6 +178,8 @@ passport.use(new FacebookStrategy({
                 newUser.facebook.id    = profile.id;                   
                 newUser.facebook.token = token; 
                 newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; 
+                newUser.facebook.email = profile.emails[0].value;
+
                 if(profile.emails === undefined)
                     console.log("It is undefined");
                 else
@@ -183,6 +191,7 @@ passport.use(new FacebookStrategy({
                    newUser.facebook.email = profile.emails[0].value;
                 } 
                 newUser.save(function(err) {
+                    console.log("facebook ---->")
                     if (err)
                         throw err;
                     return done(null, newUser);
@@ -194,4 +203,50 @@ passport.use(new FacebookStrategy({
     
 
 }));
-}
+
+
+passport.use(new GoogleStrategy({
+
+    clientID        : configAuth.googleAuth.clientID,
+    clientSecret    : configAuth.googleAuth.clientSecret,
+    callbackURL     : configAuth.googleAuth.callbackURL,
+
+},
+function(token, refreshToken, profile, done) {
+
+    // make the code asynchronous
+    // User.findOne won't fire until we have all our data back from Google
+    process.nextTick(function() {
+
+        // try to find the user based on their google id
+        donor.findOne({ 'google.id':profile.id }, function(err, user) {
+            if (err)
+                return done(err);
+
+            if (user) {
+
+                // if a user is found, log them in
+                return done(null, user);
+            } else {
+                // if the user isnt in our database, create a new user
+                var newUser          = new donor();
+
+                // set all of the relevant information
+                newUser.google.id    = profile.id;
+                newUser.google.token = token;
+                newUser.google.name  = profile.displayName;
+                newUser.google.email = profile.emails[0].value; // pull the first email
+
+                // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
+        });
+    });
+
+}));
+
+};

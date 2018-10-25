@@ -12,9 +12,12 @@ var express               = require('express'),
     hospital              = require('./models/hospital.js'),
     middleware            = require('./middleware/index'),
     multer                = require('multer'),
+    countDonors           = require('./count.js'),
+    hashmap               = require('hashmap'),
+    hospDatabase          = require('./models/hospDatabase.js'),
     path                  = require('path');
 
-    hospDatabase          = require('./models/hospDatabase.js'),
+    
     require('./config/passport')(passport);
 
 //Requiring routes
@@ -22,12 +25,13 @@ var authRoutes    = require("./routes/auth"),
     editRoutes    = require("./routes/edit"),
     searchRoutes  = require("./routes/search"),
     searchHospRoutes  = require("./routes/searchHospital"),
-    editHospRoutes= require("./routes/editHospital"),
+    editHospRoutes= require("./routes/editHospital");
     hospQuery = require("./routes/hospitalquery");
+const port=process.env.PORT || 8080;
  
 //Connecting database
  mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true});
-// mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
+//mongoose.connect('mongodb://localhost:27017/blood', {useNewUrlParser: true});
 
 
 
@@ -64,6 +68,32 @@ app.use("/edit", editRoutes);
 app.use("/hospitalquery",hospQuery);
 app.use("/searchHospital", searchHospRoutes);
 app.use("/editHospital", editHospRoutes);
+app.use("/hospitalquery",hospQuery);
+//count map
+var map=new hashmap();
+map.set("A1+",0);
+map.set("A1-",0);
+map.set("A2+",0);
+map.set("A2-",0);
+map.set("B+",0);
+map.set("B-",0);
+map.set("A1B+",0);
+map.set("A1B-",0);
+map.set("A2B+",0);
+map.set("A2B-",0);
+map.set("AB+",0);
+map.set("AB-",0);
+map.set("O+",0);
+map.set("O-",0);
+map.set("A+",0);
+map.set("A-",0);
+map.set("hospcount",0);
+map.set("donorcount",0);
+countDonors(map);
+// console.log(map.get("donorcount"));
+// console.log(map.get("hospcount"));
+// console.log(map.get("A1+"));
+
 //ROUTES
 app.get('/',function(req,res){
     res.render('home');
@@ -82,6 +112,14 @@ app.get('/profileHospital',middleware.isLoggedIn,function(req,res){
     console.log("hosp login");
     res.render('profileHospital',{hospital : req.user});
 });
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+// the callback after google has authenticated the user
+app.get('/auth/google/callback',
+        passport.authenticate('google', {
+                successRedirect : '/profileGoogle',
+                failureRedirect : '/'
+        }));
 
 app.post("/home/usernameTest",function(req,res){
     var query= donor.findOne({"local.username":req.body.username});
@@ -163,6 +201,6 @@ app.post('/hospDatabaseForm',middleware.isLoggedIn,middleware.editHospData,funct
 });
 
 
-app.listen('8080',function(){
+app.listen(port,function(){
     console.log('Server Started');
 });
