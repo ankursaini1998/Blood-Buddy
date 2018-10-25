@@ -27,6 +27,7 @@ var authRoutes    = require("./routes/auth"),
     searchHospRoutes  = require("./routes/searchHospital"),
     editHospRoutes= require("./routes/editHospital");
     hospQuery = require("./routes/hospitalquery");
+const port=process.env.PORT || 8080;
  
 //Connecting database
  mongoose.connect('mongodb://bloob_buddy:blood123@ds223653.mlab.com:23653/blood_buddy', {useNewUrlParser: true});
@@ -200,6 +201,6 @@ app.post('/hospDatabaseForm',middleware.isLoggedIn,middleware.editHospData,funct
 });
 
 
-app.listen('8080',function(){
+app.listen(port,function(){
     console.log('Server Started');
 });
