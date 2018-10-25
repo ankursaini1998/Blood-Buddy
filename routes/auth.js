@@ -132,14 +132,14 @@ router.get('/login', function(req, res){
  
  //Login Route
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', 
+    successRedirect : '/home', 
     failureRedirect : '/', 
     failureFlash :true
     
     
 }));
 router.post('/loginHospital', passport.authenticate('local-login-hospital', {
-    successRedirect : '/profileHospital', 
+    successRedirect : '/home', 
     failureRedirect : '/', 
     failureFlash :true
     
@@ -159,7 +159,7 @@ router.get('/facebook/callback',passport.authenticate('facebook', {
 router.get("/logout", function(req, res){
     req.logout();
     //console.log("success", "LOGGED YOU OUT!");
-    req.flash("success", "LOGGED YOU OUT!");
+//    req.flash("success", "LOGGED YOU OUT!");
     res.redirect("/");
  });
 

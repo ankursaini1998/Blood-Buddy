@@ -613,7 +613,7 @@ span.psw {
 
 /* Modal Content/Box */
 .modal-content {
-    background-image: linear-gradient(red, yellow);
+/*    background-image: linear-gradient(red, yellow);*/
     margin: 5% auto 15% auto;
     /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
@@ -709,15 +709,15 @@ span.psw {
 
 #search-container {
     padding-top: 9%;
-    background-image: repeating-linear-gradient(red, blue);
+/*    background-image: repeating-linear-gradient(red, blue);*/
     border-radius: 10px;
     width: 40%;
-    transition: 1s ease;
+/*    transition: 1s ease;*/
 }
 
 #search-container:hover {
 
-    transform: scale(1.1);
+/*    transform: scale(1.1);*/
 }
 
 .form-control.search-options {
@@ -732,7 +732,9 @@ span.psw {
     border-color: gray;
     width: 100%;
 }
-
+.form-element{
+    margin-right: 5px;
+}
 /*************************************************************************************************************
 
                                         REGISTRATION
