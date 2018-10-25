@@ -1,28 +1,6 @@
 <% include partials/header %>
 
-<<<<<<< HEAD
-        <ul>
-            <%donors.forEach(function(donor){%>
-                <li><div >                    
-                    <h1><%=donor.name%> </h1>
-                    <h4><%= donor.userType %></h4>
-                     Contact :    <%= donor.contactNumber%>
-                     <% if (donor.userType == "Hospital") { %>
-                        <div class="form-group">
-                            <label>
-                        <form action="/hospitalquery" method="post">
-                        <input type="hidden" name="username" value=<%= donor.local.username %> >
-                        <button type="submit" class="btn btn-primary" >View Hospital</button>
-                        </form></label></div>
-                        <%}%> 
-                 </div></li>
-
-                <%});%>
-        </ul>
-    </div>
-=======
 <h1 style="margin-top:6%;color:#f20000;font-weight:700;" class="text-center animated bounceInDown">Donor list</h1>
->>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
 
 		<div class ="container hospital-donor-list">
             <%donors.forEach(function(donor){%>

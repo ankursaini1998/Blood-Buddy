@@ -13,24 +13,8 @@ var express               = require('express'),
 
 
 
-function countDonors(){
-var map=new hashmap();
-map.set("A1+",0);
-map.set("A1-",0);
-map.set("A2+",0);
-map.set("A2-",0);
-map.set("B+",0);
-map.set("B-",0);
-map.set("A1B+",0);
-map.set("A1B-",0);
-map.set("A2B+",0);
-map.set("A2B-",0);
-map.set("AB+",0);
-map.set("AB-",0);
-map.set("O+",0);
-map.set("O-",0);
-map.set("A+",0);
-map.set("A-",0);
+function countDonors(map){
+
 
    donor.find({}).select().exec((err,donors) => {
        if(err)
@@ -49,10 +33,39 @@ map.set("A-",0);
        })}
        
    });
-   console.log(map.get("A1+"));
+  // console.log(map.get("A1+"));
 });
-       
-};
+
+donor.find({}).select().exec((err,donors) => {
+    if(err)
+    return handleError(err);
+    donors.forEach((element)=>{        
+            var x= map.get("donorcount");
+            x=x+1;
+            map.set("donorcount",x);       
+
+});
+
+});
+
+hospital.find({}).select().exec((err,donors) => {
+    if(err)
+    return handleError(err);
+    donors.forEach((element)=>{        
+            var x= map.get("hospcount");
+            x=x+1;
+            map.set("hospcount",x);       
+
+});
+// console.log(map.get("hospcount"));
+});
+// console.log(map.get("donorcount"));
+
+// console.log(map.get("A1+"));
+
+
+
+}
 
 module.exports = countDonors ;
 
