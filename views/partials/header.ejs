@@ -1,63 +1,201 @@
 <html>
+
 <head>
     <title>Blood Buddy</title>
-    
-    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- favicon-->
+    <link rel="shortcut icon" href="../img/favicon.png">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- google font (add it before style.css because we are gona use it in css) -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- owl carousel image slider api -->
+    <link rel="stylesheet" type="text/css" href="../css/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/owl-carousel/owl.theme.default.min.css">
+
+    <!-- custom css file -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/loader_style.css">
+    <link rel="stylesheet" type="text/css" href="../css/loader_style1.css">
+    <link rel="stylesheet" type="text/css" href="../css/loader_tag.css">
+
+
+    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script  src ="/scripts/register_script.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> 
-  </head>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- wow js (It should come after jqery file because it will use that and for this wow js we also first need to link animate.css )-->
+    <script src="../js/wow/wow.min.js"></script>
+
+    <!-- owl carousel image slider api JS -->
+    <script type="text/javascript" src="../js/owl-carousel/owl.carousel.min.js"></script>
+
+    <!-- COUNTER -->
+    <script type="text/javascript" src="../js/counter/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="../js/counter/jquery.counterup.min.js"></script>
+
+    <!-- custom javascript files -->
+    <script type="text/javascript" src="../js/scripts/hospitaRegisterscript.js"></script>
+    <script type="text/javascript" src="../js/scripts/register_script.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+
+</head>
 
 <body>
-    <ul class="nav nav-tabs">
-            <li class="nav-item">
-            <a class="nav-link" href="/home">Blood_Buddy</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/search">Search Donor</a>
-            </li>
-              <!-- <li class="nav-item">
-              <a class="nav-link" href="/searchHospital">Search Hospital</a>
-              </li> --> 
-            <% if(!currentUser){ %>
-            <li class="nav-item nav justify-content-end">
-              <a class="nav-link" href="/auth/login">Login </a>
-            </li>
-            <li class="nav-item nav justify-content-end">
-              <a class="nav-link" href="/auth/register">Register as Donor</a>
-            </li>
-            <li class="nav-item nav justify-content-end">
-              <a class="nav-link" href="/auth/loginHospital">Login As Hospital</a>
-            </li>
-            <li class="nav-item nav justify-content-end">
-              <a class="nav-link" href="/auth/registerHospital">Register as Hospital</a>
-            </li>
-            <% } else { %>
-            <li class="nav-item nav justify-content-end">
+    <!--  
+        <div class="loader">
+        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-466.4 259.6 280.2 47.3" enable-background="new -466.4 259.6 280.2 47.3" xml:space="preserve">
+                <polyline class="animation"   points="-465.4,281 -436,281 -418.9,281 -423.9,281 -363.2,281 -355.2,269 -345.2,303 -335.2,263 -325.2,291 -319.2,281 -187.2,281 "></polyline>
 
-              <% if(currentUser.userType == "Donor") {  %>
-              <a class="nav-link" href="/profile">Signed In As <%= currentUser.local.username %></a>
-              <% } else { %>
-              <a class="nav-link" href="/profileHospital">Signed In As <%= currentUser.local.username %></a>
-              <% } %>
+        </svg>
+        <div class="loader1">
+            <span><h1 style="width:100%;">BLOOD</h1></span>
+            <span><h1 style="width:100%;">BUDDY</h1></span>
+        </div>
+        <br>
+        <br>
+        <div class="content">
+          <div class="content__container">
+            <p class="content__container__text" style="font-weight: 600;font-size: 35px;    line-height: 40px;    color: #ecf0f1;">        
+                Life
+            </p>
 
-            </li>
+            <ul class="content__container__list">
+              <li class="content__container__list__item">Restarts !</li>
+              <li class="content__container__list__item">Here !</li>
+              <li class="content__container__list__item">Restarts !</li>
+            <li class="content__container__list__item">Here !</li>
 
-            <li class="nav-item nav justify-content-end">
-              <a class="nav-link " href="/auth/logout">Logout</a>
-            </li>
-            <% } %>
-    </ul>
+            </ul>
+          </div>
+        </div>
+    </div>
 
+    <script>
     
-      <% if(error && error.length > 0) { %>
-        <div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">&times;</button><p><%=error %></p></div>
-      <% } %>
-      
-      <% if(success && success.length > 0) { %>
-        <div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">&times;</button><p><%= success %></p></div>
-      <% } %>
-   
+setTimeout(()=>{
+            $('.loader').slideUp(1000);},7000);
+        if(screen.width<400){
+            $('.loader').css('display','none');
+        }
+    
+    </script>
+-->
+    <nav class="navbar navbar-expand-md bg-tulip fixed-top nav-transparent ">
+        <div class="container">
+            <a href="/home" class="navabar-brand text-warning font-weight-bold">BLOOD BUDDY</a>
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar"> <span class="navbar-toggler-icon"></span></button>
+            <div class="navbar-collapse text-center collapse " id="collapsenavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link custom-text-color-nav-item">Home</a>
+                    </li>
+                    <% if(!currentUser){ %>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link custom-text-color-nav-item" onclick="$('#id01').fadeTo(500,1);$(body).css('overflow','hidden');" role="button">User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link custom-text-color-nav-item" onclick="$('#id02').fadeTo(500,1);$(body).css('overflow','hidden');" role="button">Hospital Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/auth/register" class="nav-link custom-text-color-nav-item">Register User </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/auth/registerHospital" class="nav-link custom-text-color-nav-item">Register Hospital</a>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link custom-text-color-nav-item">Signed In As
+                            <%= currentUser.local.username %></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/auth/logout" class="nav-link custom-text-color-nav-item">Logout</a>
+                    </li>
+                    <% } %>
+                    <li class="nav-item">
+                        <a href="/search" class="nav-link custom-text-color-nav-item">Search Donor</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="id01" class="modal" style="z-index:10000">
+        <form class="modal-content " action="/auth/login" method="post">
+            <div id="form-container1">
+                <div class="imgcontainer">
+                    <span onclick="$('#id01').fadeOut(500);$(body).css('overflow','unset');" class="close" title="Close Modal">&times;</span>
+                    <img src="../img/Users-icon.png" alt="Avatar" class="avatar">
+                </div>
+                <div class="container login-container">
+                    <label for="uname" style="margin-bottom:0;"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <label for="psw" style="margin-bottom:0;"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <button class="login-button" type="submit">Login</button>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6"><input type="checkbox" checked="checked" name="remember"> Remember me</div>
+                            <div class="col-md-6"> <span class="psw">Forgot <a href="#">password?</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="id02" class="modal" style="z-index:10000">
+        <form class="modal-content " action="/auth/loginHospital" method="post">
+            <div id="form-container2" style="z-index:90000">
+                <div class="imgcontainer">
+                    <span onclick="$('#id02').fadeOut(500);$(body).css('overflow','unset');" class="close" title="Close Modal">&times;</span>
+                    <img src="../img/Hospital-Red-icon.png" alt="Avatar" class="avatar">
+                </div>
+                <div class="container login-container">
+                    <label for="uname" style="margin-bottom:0;"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <label for="psw" style="margin-bottom:0;"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <button class="login-button" type="submit">Login</button>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6"><input type="checkbox" checked="checked" name="remember"> Remember me</div>
+                            <div class="col-md-6"><span class="psw">Forgot <a href="#">password?</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <% if(error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>
+            <%=error %>
+        </p>
+    </div>
+    <% } %>
+
+    <% if(success && success.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>
+            <%= success %>
+        </p>
+    </div>
+    <% } %>

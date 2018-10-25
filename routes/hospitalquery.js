@@ -32,9 +32,13 @@ router.use(function(req, res, next){
 
 
 
+<<<<<<< HEAD
   module.exports = router;
 
 //   AIzaSyCIxRkE7nRMP9NbLGLGDPvOpLqyRA8S94E
 //   http://localhost:8080/auth/google/callback
 //   1091841965143-ibkr9jmpfuu8r4a0cqc7de06q17ns1gl.apps.googleusercontent.com
 //   nGYOBOiKesqnEwQ16W_rlEnE
+=======
+  module.exports = router;
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f

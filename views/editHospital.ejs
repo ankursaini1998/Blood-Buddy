@@ -1,10 +1,15 @@
 <% include partials/header %>
 
-<div class="container">
-	<h1>Hospital Registration</h1>
+
+<div class="container-fluid" style="padding-top:9%; background-image:linear-gradient(red,green);">
+	<h1 style="font-weight:700;font-size:50px;" class="text-center">Hospital Registration</h1>
     <div class="row">
  
+<<<<<<< HEAD
 	<form action="/editHospital" method="POST" id="_form" enctype="multipart/form-data">
+=======
+	<form action="/editHospital" method="POST" id="_form" enctype="multipart/form-data" style="margin:30px auto;">
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
 		<div class="form-group">
 		<label>
 			Name<br>
@@ -52,7 +57,13 @@
 		</label>
 	    <label>
 		    Contact Number<br>
+<<<<<<< HEAD
             <input type="tel" class="form-control" id="_phoneNumber" name="contactNumber" value= "<%= hospital.contactNumber %>" required>
+=======
+
+            <input type="tel" class="form-control" id="_phoneNumber" name="contactNumber" value= "<%= hospital.contactNumber %>" required>
+
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
 	    </label>
 	    </div>
 

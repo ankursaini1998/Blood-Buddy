@@ -1,16 +1,24 @@
 <% include partials/header %>
-<a href="/editHospital">Edit Profile</a>
-<div class = container>
-<h1><%= hospital.name %></h1>
-<% var file = 'uploads/' + hospital.profilePic ; %>
-<img src="<%= file %>" >
-<ul>
-    <li>Username : <%= hospital.local.username %></li>
-    <li>Email :  <%= hospital.email %></li>
-    <li>Contact : <%= hospital.contactNumber%></li>
-    <li>Address : <%= hospital.address %></li>
-    <li>City : <%= hospital.city%></li>
-</ul>
+
+<a href="/editHospital" style="float:right;">Edit Profile</a>
+<h1 class="user-name" ><%= hospital.name %></h1>
+
+<div class="container user-profile">
+    <div class="row">
+        <div class="user-image" class="col-md-3 animated slideInleft ">
+            <% var file = 'uploads/' + hospital.profilePic ; %>
+            <img src="<%= file %>" alt="Avatar" height="300" width="300" class="img-responsive" style="border-radius:50%;"/>
+        </div>
+        <div class="profile-user-info" class="col-md-9 animated slideInRight">
+            <ul style="list-style:none;">
+                <li>Username : <%= hospital.local.username %></li>
+                <li>Email :  <%= hospital.email %></li>
+                <li>Contact : <%= hospital.contactNumber%></li>
+                <li>City : <%= hospital.city%></li>
+                <li>Address : <%= hospital.address %></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <% include partials/footer %>

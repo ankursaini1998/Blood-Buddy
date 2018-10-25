@@ -1,10 +1,10 @@
 <% include partials/header %>
 
-<div class="container">
-	<h1>Donor Registration</h1>
+<div class="container-fluid" style="padding-top:9%;">
+	<h1 style="font-weight:700;font-size:50px;" class="text-center">Donor Registration</h1>
 	<div class="row">
+		<form action="/auth/register" id ="form" method="POST"   enctype="multipart/form-data" style="margin:30px auto;">
 
-		<form action="/auth/register" id ="form" method="POST"   enctype="multipart/form-data">
 			<div class="form-group">
 				<label>
 					Name<br>
@@ -48,13 +48,12 @@
 				</label>
 
 				<label>
-					Gender<br>
-					<input type="radio" name="gender" value="F" name="gender" required>Female<br>
+					Gender
+					<input type="radio" name="gender" value="F" name="gender" required>Female
 					<input type="radio" name="gender" value="M" name="gender" required>Male
 				</label>
 				<br>
 			</div>
-
 
 			<div class="form-group">
 				<label>
@@ -596,8 +595,6 @@
 					<input type="tel" id ="phoneNumber"  class="form-control" name="contactNumber" required>
 				</label>
 			</div>
-
-
 			<div class="form-group">
 				<label>
 					Address<br>
@@ -616,7 +613,8 @@
 			<div class="form-group">
 				<label>
 					<div id="eligible_check">
-					<h3>Please check your eligibility to donate blood</h3>
+
+					<h4>Please check your eligibility to donate blood</h4>
 					<input type="checkbox" id="chk1" class="check" checked>My hemoglobin is not less than 12.5 grams <br>
 					<input type="checkbox" id="chk2" class="check" checked>I am free from acute respiratory diseases and skin diseases
 					<br>
@@ -640,7 +638,6 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 
 		</form>
-
 	</div>
 </div>
 

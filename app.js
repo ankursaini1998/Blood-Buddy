@@ -12,8 +12,14 @@ var express               = require('express'),
     hospital              = require('./models/hospital.js'),
     middleware            = require('./middleware/index'),
     multer                = require('multer'),
+<<<<<<< HEAD
     path                  = require('path'),
     countDonors           = require('./count.js');
+=======
+    path                  = require('path');
+
+    hospDatabase          = require('./models/hospDatabase.js'),
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
     require('./config/passport')(passport);
 
 //Requiring routes
@@ -21,7 +27,11 @@ var authRoutes    = require("./routes/auth"),
     editRoutes    = require("./routes/edit"),
     searchRoutes  = require("./routes/search"),
     searchHospRoutes  = require("./routes/searchHospital"),
+<<<<<<< HEAD
     editHospRoutes= require("./routes/editHospital");
+=======
+    editHospRoutes= require("./routes/editHospital"),
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
     hospQuery = require("./routes/hospitalquery");
  
 //Connecting database
@@ -37,6 +47,8 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:false})); 
 app.use(cookieParser());
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
+
 app.use(session({
     secret: 'asecretmessage',
     resave: false,
@@ -58,6 +70,7 @@ app.use(function(req, res, next){
 app.use("/auth", authRoutes);
 app.use("/search", searchRoutes);
 app.use("/edit", editRoutes);
+app.use("/hospitalquery",hospQuery);
 app.use("/searchHospital", searchHospRoutes);
 app.use("/editHospital", editHospRoutes);
 app.use("/hospitalquery",hospQuery);
@@ -65,7 +78,6 @@ app.use("/hospitalquery",hospQuery);
 app.get('/',function(req,res){
     res.render('home');
 });
-
 app.get('/home',function(req,res){
     res.render('home');
 });
@@ -115,7 +127,6 @@ query.exec(function (err, person) {
 
 app.post("/home/hospitalUsernameTest",function(req,res){
     var query= hospital.findOne({"local.username":req.body.username});
-    console.log(req.body.username);
  query.select("local.username");
  query.exec(function (err, person) {
    if (err) return handleError(err);     
@@ -134,8 +145,41 @@ query.exec(function (err, person) {
  if(person ==null)
  res.send({"email":"-1"});
  else res.send({"email":person.email});
+
+ //console.log(person.email);
+
 });
 });
+
+
+app.get("/hospDatabase",middleware.isLoggedIn,function(req,res){
+
+var database=hospDatabase.findOne({"name":req.user.local.username}).select();
+database.exec(function (err, data) {
+    if (err) return handleError(err);     
+    res.render('hospDatabase',{"data":data });
+   });
+
+    
+});
+
+
+app.get("/editHospDatabase",middleware.isLoggedIn,function(req,res){
+
+    var database=hospDatabase.findOne({"name":req.user.local.username}).select();
+    database.exec(function (err, data) {
+        if (err) return handleError(err);     
+        res.render('editHospDatabase',{"data":data });
+       });
+
+});
+
+
+app.post('/hospDatabaseForm',middleware.isLoggedIn,middleware.editHospData,function(req,res)
+{
+   res.redirect('/profileHospital');
+});
+
 
 app.listen('8080',function(){
     console.log('Server Started');

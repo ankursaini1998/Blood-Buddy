@@ -1,8 +1,6 @@
 <% include partials/header %>
-<div class="container">
-	<h1>Donor list</h1>
-    <div class="row">
 
+<<<<<<< HEAD
         <ul>
             <%donors.forEach(function(donor){%>
                 <li><div >                    
@@ -22,5 +20,34 @@
                 <%});%>
         </ul>
     </div>
+=======
+<h1 style="margin-top:6%;color:#f20000;font-weight:700;" class="text-center animated bounceInDown">Donor list</h1>
+>>>>>>> cf336da9437447a37c2b03cabfa1bc231785154f
 
+		<div class ="container hospital-donor-list">
+            <%donors.forEach(function(donor){%>
+            <div class="card wow slideInUp" >
+              <% if(donor.userType=="Hospital"){ %>
+                    <img class="card-img-top image-card" src="img/hospital.png" alt="Card image" >
+                <% }else{ %>
+                   <img class="card-img-top image-card" src="img/users/client-1.jpg" alt="Card image" >
+                <%}%>
+                <div class="card-header"><b><%=donor.name%></b></div>
+                <div class="card-body"><%=donor.userType%><br>
+                    Contact :<%= donor.contactNumber%>
+                    <% if (donor.userType == "Hospital") { %>
+                        <div class="form-group">
+                            <label>
+                        <form action="/hospitalquery" method="post">
+                        <input type="hidden" name="username" value=<%= donor.local.username %> >
+                        <button type="submit" class="btn btn-primary" >View Hospital</button>
+                        </form></label></div>
+                        <%}%> 
+                
+                </div>
+                
+            </div>  
+            <%});%>
+		</div>
+         
 <% include partials/footer %>
