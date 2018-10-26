@@ -90,9 +90,7 @@ map.set("A-",0);
 map.set("hospcount",0);
 map.set("donorcount",0);
 countDonors(map);
-// console.log(map.get("donorcount"));
-// console.log(map.get("hospcount"));
-// console.log(map.get("A1+"));
+
 
 //ROUTES
 app.get('/',function(req,res){
