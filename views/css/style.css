@@ -29,6 +29,12 @@ h3 {
     font-size: 50px;
     font-weight: 700;
 }
+h4{
+     color: #F20000;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+}
 
 p {
     color: #64707b;
@@ -107,7 +113,17 @@ p {
     color: #34c6d3;
     font-weight: 700;
 }
+.custom-text-color-logo{
+    background: -webkit-linear-gradient(red,gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
 
+.main-navbar-container{
+    background-color: #fff;
+    border-radius: 20px;;
+}
 /*****************************************
             HEADER SECTION
 *****************************************/
@@ -175,14 +191,22 @@ h1.user-name {
 
 .btn-blue {
     color: #0076B2;
+    
 }
-
 .btn-blue:hover {
     background-color: #0076B2;
     color: white;
     border-color: #0076B2;
 }
-
+.btn-blue-filled{
+    color:#fff;
+    background-color:#0076B2;
+    border-color:#0076B2;
+}
+.btn-blue-filled:hover{
+    transform: scale(1.1);
+    transition: 0.8s ease;
+}
 .btn-white {
     color: #fff;
 }
@@ -537,8 +561,8 @@ form .form-control.footer-control {
 }
 
 /* Full-width input fields */
-input[type=text],
-input[type=password] {
+.login-container input[type=text],
+.login-container input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 2px 0 15px 0;
@@ -637,31 +661,6 @@ span.psw {
     cursor: pointer;
 }
 
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {
-        -webkit-transform: scale(0)
-    }
-
-    to {
-        -webkit-transform: scale(1)
-    }
-}
-
-@keyframes animatezoom {
-    from {
-        transform: scale(0)
-    }
-
-    to {
-        transform: scale(1)
-    }
-}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -704,7 +703,7 @@ span.psw {
 }
 
 .card > .image-card:hover {
-    transform: scale(1.2);
+/*    transform: scale(1.2);*/
 }
 
 #search-container {
@@ -732,14 +731,26 @@ span.psw {
     border-color: gray;
     width: 100%;
 }
-.form-element{
-    margin-right: 5px;
+
+.form-group{
+    margin-bottom: 0;
+}
+label{
+    margin-right:5px; 
 }
 /*************************************************************************************************************
 
                                         REGISTRATION
 
 **************************************************************************************************************/
-.registration-elements {
-    margin-right: 5px;
+.form-element{
+    background-color: rgba(0,0,0,.2);
+    width: 300px;
+/*    display: inline-block;*/
+}
+/*************************************************************************
+                hospital
+**************************************************************************/
+.edit-hosp-database-container{
+    padding-top: 10%;
 }
