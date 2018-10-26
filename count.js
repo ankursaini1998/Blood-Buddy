@@ -57,11 +57,9 @@ hospital.find({}).select().exec((err,donors) => {
             map.set("hospcount",x);       
 
 });
-// console.log(map.get("hospcount"));
-});
-// console.log(map.get("donorcount"));
 
-// console.log(map.get("A1+"));
+});
+
 
 
 

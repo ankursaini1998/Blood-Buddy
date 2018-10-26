@@ -44,7 +44,7 @@ passport.use('local-signup', new LocalStrategy({passReqToCallback : true},functi
             return done(err);
         if (user){
             console.log("User exists already");
-            return done(null, false,req.flash("error", 'This Username is already taken.'));
+             return done(null, false,req.flash("error", 'This Username is already taken.'));
         } 
         else
         {
