@@ -96,10 +96,12 @@ countDonors(map);
 app.get('/',function(req,res){
     res.render('home');
 });
+app.get('/tempHome',function(req,res){
+    res.render('home');
+});
 app.get('/home',function(req,res){
     res.render('home');
 });
-
 app.get('/profile',middleware.isLoggedIn,function(req,res){
     res.render('profile',{donor : req.user});
 });

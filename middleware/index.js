@@ -1,3 +1,4 @@
+hospDatabase        = require('../models/hospDatabase'),
 module.exports = 
 {
       
@@ -36,7 +37,7 @@ module.exports =
                     // res.redirect('/profileHospital');
                     next();
                 });
-          });
+          })
         
         
         },
