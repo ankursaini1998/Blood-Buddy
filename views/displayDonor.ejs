@@ -20,7 +20,10 @@
                         <input type="hidden" name="username" value=<%= donor.local.username %> >
                         <button type="submit" class="btn btn-primary" >View Hospital</button>
                         </form></label></div>
-                        <%}%> 
+                        <%} else { %>
+                            <div class="card-header"><b>Blood Group : <%=donor.bloodGroup%></b></div>
+                            <% } %>
+
                 
                 </div>
                 
