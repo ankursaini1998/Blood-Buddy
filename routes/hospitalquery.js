@@ -25,7 +25,7 @@ router.use(function(req, res, next){
             if (err)
                 return done(err);
             else 
-            res.render('profileHospital',{hospital:user});
+            res.render('profileHospitalTemp',{hospital:user});
            
     });
 });
